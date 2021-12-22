@@ -7,6 +7,7 @@ namespace Assets.Scripts.Player
     {
         public KeyCode trigger;
         public GunScript defaultGun;
+        public bool enabled = true;
 
         private GunScript currentGun;
 
@@ -21,7 +22,7 @@ namespace Assets.Scripts.Player
         // Update is called once per frame
         void Update()
         {
-            if(currentGun != null && Input.GetKey(trigger))
+            if(enabled && currentGun != null && Input.GetKey(trigger))
             {
                 currentGun.Trigger();
             }

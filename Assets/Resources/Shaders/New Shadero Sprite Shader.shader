@@ -23,11 +23,6 @@ RotationUV_Rotation_Speed_1("RotationUV_Rotation_Speed_1", Range(-8, 8)) =0
 PositionUV_X_1("PositionUV_X_1", Range(-2, 2)) = 0.95
 PositionUV_Y_1("PositionUV_Y_1", Range(-2, 2)) = 0
 _NewTex_1("NewTex_1(RGB)", 2D) = "white" { }
-_NewTex_2("NewTex_2(RGB)", 2D) = "white" { }
-_ClippingDown_Value_1("_ClippingDown_Value_1", Range(0, 1)) = 0.93
-_ClippingUp_Value_1("_ClippingUp_Value_1", Range(0, 1)) = 0.93
-_Mul_Fade_1("_Mul_Fade_1", Range(0, 1)) = 1
-_MaskRGBA_Fade_1("_MaskRGBA_Fade_1", Range(0, 1)) = 0
 _SpriteFade("SpriteFade", Range(0, 1)) = 1.0
 
 // required for UI.Mask
@@ -93,11 +88,6 @@ float RotationUV_Rotation_Speed_1;
 float PositionUV_X_1;
 float PositionUV_Y_1;
 sampler2D _NewTex_1;
-sampler2D _NewTex_2;
-float _ClippingDown_Value_1;
-float _ClippingUp_Value_1;
-float _Mul_Fade_1;
-float _MaskRGBA_Fade_1;
 
 v2f vert(appdata_t IN)
 {
@@ -119,18 +109,6 @@ float cosX = cos(angle);
 float2x2 rotationMatrix = float2x2(cosX, -sinX, sinX, cosX);
 uv = mul(uv, rotationMatrix) + float2(posx, posy);
 return uv;
-}
-float4 ClippingUp(float4 txt, float2 uv, float value)
-{
-float4 tex = txt;
-if (uv.y > value) tex = float4(0, 0, 0, 0);
-return tex;
-}
-float4 ClippingDown(float4 txt, float2 uv, float value)
-{
-float4 tex = txt;
-if (uv.y < 1 - value) tex = float4(0, 0, 0, 0);
-return tex;
 }
 float2 PixelUV(float2 uv, float x)
 {
@@ -160,18 +138,14 @@ return p;
 }
 float4 frag (v2f i) : COLOR
 {
+float4 _MainTex_1 = tex2D(_MainTex, i.texcoord);
 float2 PixelUV_1 = PixelUV(i.texcoord,PixelUV_Size_1);
 float2 LiquidUV_1 = LiquidUV(PixelUV_1,LiquidUV_WaveX_1,LiquidUV_WaveY_1,LiquidUV_DistanceX_1,LiquidUV_DistanceY_1,LiquidUV_Speed_1);
 float2 RotationUV_1 = RotationUV(LiquidUV_1,RotationUV_Rotation_1,RotationUV_Rotation_PosX_1,RotationUV_Rotation_PosY_1,RotationUV_Rotation_Speed_1);
 float2 PositionUV_1 = PositionUV(RotationUV_1,PositionUV_X_1,PositionUV_Y_1);
 float4 NewTex_1 = tex2D(_NewTex_1,PositionUV_1);
-float4 NewTex_2 = tex2D(_NewTex_2, i.texcoord);
-float4 ClippingDown_1 = ClippingDown(NewTex_2,i.texcoord,_ClippingDown_Value_1);
-float4 ClippingUp_1 = ClippingUp(NewTex_2,i.texcoord,_ClippingUp_Value_1);
-ClippingDown_1 = lerp(ClippingDown_1,ClippingDown_1 * ClippingUp_1,_Mul_Fade_1);
-float4 MaskRGBA_1=NewTex_1;
-MaskRGBA_1.a = lerp(ClippingDown_1.r, 1 - ClippingDown_1.r ,_MaskRGBA_Fade_1);
-float4 FinalResult = MaskRGBA_1;
+NewTex_1.a = _MainTex_1.a;
+float4 FinalResult = NewTex_1;
 FinalResult.rgb *= i.color.rgb;
 FinalResult.a = FinalResult.a * _SpriteFade * i.color.a;
 return FinalResult;

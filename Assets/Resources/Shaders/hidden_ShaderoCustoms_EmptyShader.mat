@@ -28,7 +28,7 @@ Material:
         m_Scale: {x: 0, y: 0}
         m_Offset: {x: 0, y: 0}
     - _NewTex_2:
-        m_Texture: {fileID: 2800000, guid: fab06e0be9375cc4d823efa71629885c, type: 3}
+        m_Texture: {fileID: 2800000, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     m_Ints: []
@@ -39,8 +39,8 @@ Material:
     - LiquidUV_DistanceX_1: 1
     - LiquidUV_DistanceY_1: 0.15
     - LiquidUV_Speed_1: -2
-    - LiquidUV_WaveX_1: 2
-    - LiquidUV_WaveY_1: 1.5
+    - LiquidUV_WaveX_1: 1.83
+    - LiquidUV_WaveY_1: 2
     - PixelUV_Size_1: 8
     - PositionUV_X_1: 0.95
     - PositionUV_Y_1: 0
@@ -48,21 +48,23 @@ Material:
     - ResizeUV_Y_1: -0.658
     - ResizeUV_ZoomX_1: 0.146
     - ResizeUV_ZoomY_1: 0.177
-    - RotationUV_Rotation_1: -90
+    - RotationUV_Rotation_1: 0
     - RotationUV_Rotation_PosX_1: 0.463
     - RotationUV_Rotation_PosY_1: 0.5
     - RotationUV_Rotation_Speed_1: 0
     - ZoomUV_PosX_1: 0.555
     - ZoomUV_PosY_1: 0.336
     - ZoomUV_Zoom_1: 0.273
-    - _ClippingDown_Value_1: 0.685
-    - _ClippingUp_Value_1: 0.93
+    - _ClippingDown_Value_1: 1
+    - _ClippingUp_Value_1: 1
     - _ColorMask: 15
     - _Generate_Fire_PosX_1: 0.055
     - _Generate_Fire_PosY_1: -0.027
     - _Generate_Fire_Precision_1: 0.05
     - _Generate_Fire_Smooth_1: 0.5
     - _Generate_Fire_Speed_1: 1
+    - _GrayScale_Fade_1: 1
+    - _Mask2RGBA_Fade_1: 1
     - _Mask2uv_Fade_15: 1
     - _Mask2uv_Fade_17: 1
     - _Mask2uv_Fade_20: 1

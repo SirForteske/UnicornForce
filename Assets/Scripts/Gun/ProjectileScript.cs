@@ -25,7 +25,7 @@ namespace Gun
             }
             else if (!enemyBullet && collision.tag == "Enemy")
             {
-                collision.GetComponent<Enemy>().GetDamage(damage);
+                collision.GetComponent<Creature>().TakeDamage(damage);
                 if (destroyedByCollision)
                     Destruction();
             }

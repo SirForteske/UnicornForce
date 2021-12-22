@@ -6,6 +6,7 @@ using UnityEngine;
 public class Coin : MonoBehaviour
 {
     public GameObject CatchFX;
+    public float PowerAmount = 1;
 
     // Start is called before the first frame update
     void Start()
@@ -23,6 +24,7 @@ public class Coin : MonoBehaviour
     {
         if(collision.gameObject.GetComponent<PlayerScript>())
         {
+            collision.gameObject.GetComponent<PlayerScript>().AddPower(PowerAmount);
             Pick();
         }
     }

@@ -6,7 +6,7 @@ using UnityEngine;
 namespace Assets.Scripts.UI
 {
     [RequireComponent(typeof(MMProgressBar))]
-    public class HealthBarControllerScript : MonoBehaviour
+    public class PowerBarControllerScript : MonoBehaviour
     {
         public PlayerScript player;
 
@@ -15,7 +15,7 @@ namespace Assets.Scripts.UI
         protected void Start()
         {
             _progressBar = GetComponent<MMProgressBar>();
-            player.OnHealthChanged += (currentHP, maxHP) => _progressBar.UpdateBar01((float)currentHP / maxHP);
+            player.OnPowerChanged += (currentPower, maxPower) => _progressBar.UpdateBar01(currentPower / maxPower);
         }
     }
 }
