@@ -15,7 +15,12 @@ namespace Player
     public class PlayerScript : MonoBehaviour
     {
         public static PlayerScript instance;
-        
+
+        [Header("Body Parts")]
+        public GameObject head;
+        [Range(0f, 360f)]
+        public float maxHeadRotation = 50f;
+
         [Header("Health")]
         public GameObject destructionFX;
         public int maxHP = 5;
@@ -51,6 +56,11 @@ namespace Player
             {
                 Destruction();
             }
+
+            Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+            Vector2 shotDirection = ((Vector2)(mousePos - transform.position)).normalized;
+            float targetAngle = Mathf.Min(maxHeadRotation, Mathf.Max(-maxHeadRotation, Vector2.SignedAngle(new Vector2(1f, 0f), shotDirection)));
+            head.transform.rotation = Quaternion.Euler(transform.rotation.eulerAngles.x, transform.rotation.eulerAngles.y, targetAngle);
         }
 
         //method for damage processing by 'Player'
@@ -72,11 +82,15 @@ namespace Player
             if (Power == maxPower && !superPowerActive)
             {
                 superPowerActive = true;
+                slots[1].enabled = true;
+                slots[1].CurrentGun.Trigger();
                 StartCoroutine(ConsumePower(powerConsumption));
             } 
             else if (Power == 0f)
             {
                 superPowerActive = false;
+                slots[1].enabled = false;
+                slots[1].CurrentGun.Stop();
             }
         }
 

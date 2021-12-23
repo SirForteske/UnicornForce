@@ -6,7 +6,7 @@ public class Creature : MonoBehaviour
 {
     public SpriteRenderer spriteRenderer;
 
-    public int health = 2;
+    public float health = 2f;
 
     [Header("Corruption")]
     [SerializeField]
@@ -25,7 +25,7 @@ public class Creature : MonoBehaviour
         spriteRenderer.material = isCorrupt ? spriteRenderer.material : healedMaterial;
     }
 
-    public virtual void TakeDamage(int damage)
+    public virtual void TakeDamage(float damage)
     {
         health = Mathf.Max(0, health - damage);
 
@@ -45,6 +45,14 @@ public class Creature : MonoBehaviour
         if(collision.tag == "Player")
         {
             collision.GetComponent<PlayerScript>().TakeDamage(1);
+        }
+    }
+
+    private void OnParticleCollision(GameObject other)
+    {
+        if (other.CompareTag("Enemy"))
+        {
+            var something = 0;
         }
     }
 }

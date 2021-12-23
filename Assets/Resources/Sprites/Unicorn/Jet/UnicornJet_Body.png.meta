@@ -1,13 +1,13 @@
 fileFormatVersion: 2
-guid: 64b117cb70d310948af9c9ad7b5ea29d
+guid: cd225f6e3a986ea4facef66a6920115b
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 8782885077119808066
-    second: UnicornJet_Idle0_0
+      213: -6718047334605601764
+    second: UnicornJet_Body_0
   - first:
-      213: -2074545007933090948
-    second: UnicornJet_Idle0_1
+      213: -6468378578203163551
+    second: UnicornJet_Body_1
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -121,13 +121,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: UnicornJet_Idle0_0
+      name: UnicornJet_Body_0
       rect:
         serializedVersion: 2
         x: 0
-        y: 0
-        width: 512
-        height: 224
+        y: 126
+        width: 252
+        height: 126
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -135,20 +135,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 2423ec4a17313e970800000000000000
-      internalID: 8782885077119808066
+      spriteID: c14c29cfa83b4c2a0800000000000000
+      internalID: -6718047334605601764
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: UnicornJet_Idle0_1
+      name: UnicornJet_Body_1
       rect:
         serializedVersion: 2
-        x: 512
+        x: 0
         y: 0
-        width: 512
-        height: 224
+        width: 252
+        height: 126
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -156,8 +156,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: c7396938e4cb533e0800000000000000
-      internalID: -2074545007933090948
+      spriteID: 164447d34f3bb36a0800000000000000
+      internalID: -6468378578203163551
       vertices: []
       indices: 
       edges: []

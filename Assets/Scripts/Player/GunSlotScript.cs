@@ -9,7 +9,7 @@ namespace Assets.Scripts.Player
         public GunScript defaultGun;
         public bool enabled = true;
 
-        private GunScript currentGun;
+        public GunScript CurrentGun { get; private set; }
 
         private void Start()
         {
@@ -22,17 +22,17 @@ namespace Assets.Scripts.Player
         // Update is called once per frame
         void Update()
         {
-            if(enabled && currentGun != null && Input.GetKey(trigger))
+            if(enabled && CurrentGun != null && Input.GetKey(trigger))
             {
-                currentGun.Trigger();
+                CurrentGun.Trigger();
             }
         }
 
         public void SetGun(GunScript gunPrefab)
         {
-            Destroy(currentGun);
-            currentGun = Instantiate(gunPrefab, transform.position, transform.rotation, transform);
-            currentGun.transform.localScale = transform.localScale;
+            Destroy(CurrentGun);
+            CurrentGun = Instantiate(gunPrefab, transform.position, transform.rotation, transform);
+            CurrentGun.transform.localScale = transform.localScale;
         }
     }
 }

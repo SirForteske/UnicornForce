@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 9211935840410222614}
   - component: {fileID: 491261527089389345}
   - component: {fileID: -8473024701351986143}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Coin
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -118,6 +118,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   CatchFX: {fileID: 6177119103879668655, guid: 466bb98425b3f2245ae1320e14fe468b, type: 3}
+  PowerAmount: 1
 --- !u!114 &1018650165575050605
 MonoBehaviour:
   m_ObjectHideFlags: 0

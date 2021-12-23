@@ -35,6 +35,11 @@ namespace Gun
             shot.GetComponent<Rigidbody2D>().AddForce(shotDirection * power, ForceMode2D.Impulse);
         }
 
+        public virtual void Stop()
+        {
+
+        }
+
         IEnumerator EnableShooting(float time)
         {
             yield return new WaitForSeconds(time);
