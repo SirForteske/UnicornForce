@@ -1,15 +1,16 @@
 ﻿using Gun;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 namespace Assets.Scripts.Player
 {
     public class GunSlotScript : MonoBehaviour
     {
-        public KeyCode trigger;
         public GunScript defaultGun;
         public bool enabled = true;
 
         public GunScript CurrentGun { get; private set; }
+
 
         private void Start()
         {
@@ -22,10 +23,10 @@ namespace Assets.Scripts.Player
         // Update is called once per frame
         void Update()
         {
-            if(enabled && CurrentGun != null && Input.GetKey(trigger))
+        /*    if(enabled && CurrentGun != null && Input.GetKey(trigger))
             {
                 CurrentGun.Trigger();
-            }
+            }*/
         }
 
         public void SetGun(GunScript gunPrefab)

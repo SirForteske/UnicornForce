@@ -418,6 +418,7 @@ GameObject:
   - component: {fileID: 7217785678023558810}
   - component: {fileID: 6232907135014616331}
   - component: {fileID: 8896016790957764564}
+  - component: {fileID: 4391644960723829775}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -507,6 +508,37 @@ MonoBehaviour:
     y: -4.25
     width: 15
     height: 8.5
+--- !u!114 &4391644960723829775
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7217785678023558814}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 62899f850307741f2a39c98a8b639597, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Actions: {fileID: -944628639613478452, guid: 36bc976b05897f74ab2756618fbb6b73,
+    type: 3}
+  m_NotificationBehavior: 0
+  m_UIInputModule: {fileID: 0}
+  m_DeviceLostEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_DeviceRegainedEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_ControlsChangedEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_ActionEvents: []
+  m_NeverAutoSwitchControlSchemes: 0
+  m_DefaultControlScheme: Xbox Control Scheme
+  m_DefaultActionMap: Player
+  m_SplitScreenIndex: -1
+  m_Camera: {fileID: 0}
 --- !u!1 &7217785678382878253
 GameObject:
   m_ObjectHideFlags: 0
@@ -550,7 +582,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 44b5cccde89e46a43bc80042b6345428, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  trigger: 323
+  trigger: 9
   defaultGun: {fileID: 4428063130917962783, guid: 9a1c3c30d43cbe0489c2e35a6ee2082e,
     type: 3}
   enabled: 1

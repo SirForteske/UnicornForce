@@ -4,6 +4,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 using UnityEngine.UI;
 
 /// <summary>
@@ -35,6 +36,8 @@ namespace Player
         public int HP { get; private set; }
         public float Power { get; private set; }
 
+        private InputMaster inputMaster;
+        private InputAction fireAction;
         private bool isImmune = false;
         private bool superPowerActive = false;
 
@@ -47,7 +50,14 @@ namespace Player
             if (instance == null)
                 instance = this;
 
+            inputMaster = new InputMaster();
             HP = maxHP;
+        }
+
+        private void Start()
+        {
+            fireAction = inputMaster.Player.Fire;
+            fireAction.Enable();
         }
 
         private void Update()
@@ -56,11 +66,16 @@ namespace Player
             {
                 Destruction();
             }
-
-            Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-            Vector2 shotDirection = ((Vector2)(mousePos - transform.position)).normalized;
+            
+        //    Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+            Vector2 shotDirection = fireAction.ReadValue<Vector2>();
             float targetAngle = Mathf.Min(maxHeadRotation, Mathf.Max(-maxHeadRotation, Vector2.SignedAngle(new Vector2(1f, 0f), shotDirection)));
             head.transform.rotation = Quaternion.Euler(transform.rotation.eulerAngles.x, transform.rotation.eulerAngles.y, targetAngle);
+
+            if(!superPowerActive && shotDirection.magnitude > 0)
+            {
+                slots[0].CurrentGun.Trigger();
+            }
         }
 
         //method for damage processing by 'Player'

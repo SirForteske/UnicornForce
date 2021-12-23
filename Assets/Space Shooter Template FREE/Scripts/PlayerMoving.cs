@@ -43,9 +43,9 @@ public class PlayerMoving : MonoBehaviour {
 
             if (Input.GetMouseButton(0)) //if mouse button was pressed       
             {
-                Vector3 mousePosition = mainCamera.ScreenToWorldPoint(Input.mousePosition); //calculating mouse position in the worldspace
+ /*               Vector3 mousePosition = mainCamera.ScreenToWorldPoint(Input.mousePosition); //calculating mouse position in the worldspace
                 mousePosition.z = transform.position.z;
-                transform.position = Vector3.MoveTowards(transform.position, mousePosition, 30 * Time.deltaTime);
+                transform.position = Vector3.MoveTowards(transform.position, mousePosition, 30 * Time.deltaTime);*/
             }
 #endif
 
