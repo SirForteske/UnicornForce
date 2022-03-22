@@ -27,6 +27,7 @@ Transform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -45,7 +46,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   defaultProjectilePrefab: {fileID: 1824867121156915805, guid: 510711596bf791a44b9ea5ce80be3f4d,
     type: 3}
-  power: 30
-  fireRate: 6
+  power: 1.5
+  fireRate: 5
   enabled: 1
   angleOffset: 0.3

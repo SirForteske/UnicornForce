@@ -6,7 +6,7 @@ namespace Gun
     public class GunScript : MonoBehaviour
     {
         public ProjectileScript defaultProjectilePrefab;
-        public int power;
+        public float power;
         [Range(0, 50)]
         public float fireRate = 2;
         public bool enabled = true;

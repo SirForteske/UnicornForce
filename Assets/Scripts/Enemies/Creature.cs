@@ -15,14 +15,19 @@ public class Creature : MonoBehaviour
 
     protected void Start()
     {
-        spriteRenderer.material = isCorrupt ? spriteRenderer.material : healedMaterial;
+        if (!isCorrupt)
+        {
+            GetComponent<Animator>().SetBool("Cleansed", !isCorrupt);
+            spriteRenderer.material.SetFloat("_GreyscaleBlend", 0f);
+        }
     }
 
     public virtual void ToogleCorrupted()
     {
         isCorrupt = !isCorrupt;
 
-        spriteRenderer.material = isCorrupt ? spriteRenderer.material : healedMaterial;
+        GetComponent<Animator>().SetBool("Cleansed", !isCorrupt);
+        spriteRenderer.material.SetFloat("_GreyscaleBlend", isCorrupt ? 1f : 0f);
     }
 
     public virtual void TakeDamage(float damage)
@@ -50,9 +55,9 @@ public class Creature : MonoBehaviour
 
     private void OnParticleCollision(GameObject other)
     {
-        if (other.CompareTag("Enemy"))
+  /*      if (other.CompareTag("Enemy"))
         {
             var something = 0;
-        }
+        }*/
     }
 }

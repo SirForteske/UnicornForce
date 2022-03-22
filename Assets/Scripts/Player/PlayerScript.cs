@@ -70,7 +70,7 @@ namespace Player
         //    Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             Vector2 shotDirection = fireAction.ReadValue<Vector2>();
             float targetAngle = Mathf.Min(maxHeadRotation, Mathf.Max(-maxHeadRotation, Vector2.SignedAngle(new Vector2(1f, 0f), shotDirection)));
-            head.transform.rotation = Quaternion.Euler(transform.rotation.eulerAngles.x, transform.rotation.eulerAngles.y, targetAngle);
+    //        head.transform.rotation = Quaternion.Euler(transform.rotation.eulerAngles.x, transform.rotation.eulerAngles.y, targetAngle);
 
             if(!superPowerActive && shotDirection.magnitude > 0)
             {

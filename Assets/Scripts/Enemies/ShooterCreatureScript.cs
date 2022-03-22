@@ -22,7 +22,7 @@ namespace Assets.Scripts.Enemies
             if (!isCorrupt)
             {
                 var roots = SceneManager.GetActiveScene().GetRootGameObjects();
-                List<Transform> exits = new List<Transform>();
+                List<Transform> exits = new();
 
                 foreach(GameObject root in roots)
                 {
