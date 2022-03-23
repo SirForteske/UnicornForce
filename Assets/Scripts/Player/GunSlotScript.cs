@@ -7,12 +7,13 @@ namespace Assets.Scripts.Player
     public class GunSlotScript : MonoBehaviour
     {
         public GunScript defaultGun;
-        public bool enabled = true;
+        public bool active = true;
+        public bool autoFire = false;
 
         public GunScript CurrentGun { get; private set; }
 
 
-        private void Start()
+        protected virtual void Start()
         {
             if(defaultGun != null)
             {
@@ -20,13 +21,9 @@ namespace Assets.Scripts.Player
             }
         }
 
-        // Update is called once per frame
-        void Update()
+        protected virtual void Update()
         {
-        /*    if(enabled && CurrentGun != null && Input.GetKey(trigger))
-            {
-                CurrentGun.Trigger();
-            }*/
+            if (autoFire) CurrentGun.Trigger(false);
         }
 
         public void SetGun(GunScript gunPrefab)

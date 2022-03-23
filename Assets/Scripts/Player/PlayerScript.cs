@@ -97,14 +97,14 @@ namespace Player
             if (Power == maxPower && !superPowerActive)
             {
                 superPowerActive = true;
-                slots[1].enabled = true;
+                slots[1].active = true;
                 slots[1].CurrentGun.Trigger();
                 StartCoroutine(ConsumePower(powerConsumption));
             } 
             else if (Power == 0f)
             {
                 superPowerActive = false;
-                slots[1].enabled = false;
+                slots[1].active = false;
                 slots[1].CurrentGun.Stop();
             }
         }

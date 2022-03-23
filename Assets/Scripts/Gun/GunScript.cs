@@ -1,26 +1,35 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using UnityEngine;
 
 namespace Gun
 {
-    public class GunScript : MonoBehaviour
+    public abstract class GunScript : MonoBehaviour
     {
+        [Header("Projectile")]
         public ProjectileScript defaultProjectilePrefab;
+        public ProjectileScript equippedProjectile;
+        [Header("Gun Settings")]
+        public bool active = true;
         public float power;
         [Range(0, 50)]
         public float fireRate = 2;
-        public bool enabled = true;
 
         private bool CanShoot = true;
 
-        // Use this for initialization
-        void Start()
+        protected virtual void Start()
+        {
+            if (equippedProjectile == null) 
+                equippedProjectile = defaultProjectilePrefab;
+        }
+
+        protected virtual void Update()
         {
         }
 
         public virtual void Trigger(bool forceShoot = false)
         {
-            if (enabled && (CanShoot || forceShoot))
+            if (active && (CanShoot || forceShoot))
             {
                 Fire();
                 CanShoot = false;
@@ -28,17 +37,9 @@ namespace Gun
             }
         }
 
-        protected virtual void Fire()
-        {
-            var shotDirection = new Vector2(1f, 0f);
-            var shot = Instantiate(defaultProjectilePrefab, transform.position, transform.rotation);
-            shot.GetComponent<Rigidbody2D>().AddForce(shotDirection * power, ForceMode2D.Impulse);
-        }
+        protected abstract void Fire();
 
-        public virtual void Stop()
-        {
-
-        }
+        public abstract void Stop();
 
         IEnumerator EnableShooting(float time)
         {
