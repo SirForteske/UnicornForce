@@ -13,14 +13,13 @@ using UnityEngine.UI;
 
 namespace Player
 {
+    [RequireComponent(typeof(Animator))]
     public class PlayerScript : MonoBehaviour
     {
         public static PlayerScript instance;
 
-        [Header("Body Parts")]
-        public GameObject head;
-        [Range(0f, 360f)]
-        public float maxHeadRotation = 50f;
+        [Header("Animation")]
+        public Animator animatorController;
 
         [Header("Health")]
         public GameObject destructionFX;
@@ -31,13 +30,12 @@ namespace Player
         public float powerConsumption = 1f;
 
         [Header("Gun Slots")]
-        public List<GunSlotScript> slots;
+        public GunSlotScript primarySlot;
+        public GunSlotScript secondarySlot;
 
         public int HP { get; private set; }
         public float Power { get; private set; }
 
-        private InputMaster inputMaster;
-        private InputAction fireAction;
         private bool isImmune = false;
         private bool superPowerActive = false;
 
@@ -50,31 +48,19 @@ namespace Player
             if (instance == null)
                 instance = this;
 
-            inputMaster = new InputMaster();
             HP = maxHP;
         }
 
         private void Start()
         {
-            fireAction = inputMaster.Player.Fire;
-            fireAction.Enable();
+            animatorController = GetComponent<Animator>();
         }
 
         private void Update()
         {
             if (HP == 0)
             {
-                Destruction();
-            }
-            
-        //    Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-            Vector2 shotDirection = fireAction.ReadValue<Vector2>();
-            float targetAngle = Mathf.Min(maxHeadRotation, Mathf.Max(-maxHeadRotation, Vector2.SignedAngle(new Vector2(1f, 0f), shotDirection)));
-    //        head.transform.rotation = Quaternion.Euler(transform.rotation.eulerAngles.x, transform.rotation.eulerAngles.y, targetAngle);
-
-            if(!superPowerActive && shotDirection.magnitude > 0)
-            {
-                slots[0].CurrentGun.Trigger();
+             //   Destruction();
             }
         }
 
@@ -91,7 +77,7 @@ namespace Player
 
         public void AddPower(float power)
         {
-            Power = Mathf.Min(maxPower, Mathf.Max(0f, Power + power));
+        /*    Power = Mathf.Min(maxPower, Mathf.Max(0f, Power + power));
             OnPowerChanged?.Invoke(Power, maxPower);
 
             if (Power == maxPower && !superPowerActive)
@@ -106,7 +92,7 @@ namespace Player
                 superPowerActive = false;
                 slots[1].active = false;
                 slots[1].CurrentGun.Stop();
-            }
+            }*/
         }
 
         //'Player's' destruction procedure
@@ -132,6 +118,30 @@ namespace Player
             if (superPowerActive)
             {
                 StartCoroutine(ConsumePower(amount));
+            }
+        }
+
+        private void OnPrimaryShot(InputValue inputValue)
+        {
+            if (primarySlot.EquippedGun.CanShoot)
+            {
+                primarySlot.EquippedGun.active = inputValue.isPressed;
+                secondarySlot.EquippedGun.active = !inputValue.isPressed;
+
+                primarySlot.EquippedGun.Trigger(inputValue.isPressed);
+                animatorController.SetInteger("ShootMode", inputValue.isPressed ? 1 : 0);
+            }
+        }
+
+        private void OnSecondaryShot(InputValue inputValue)
+        {
+            if (secondarySlot.EquippedGun.CanShoot)
+            {
+                primarySlot.EquippedGun.active = !inputValue.isPressed;
+                secondarySlot.EquippedGun.active = inputValue.isPressed;
+
+                secondarySlot.EquippedGun.Trigger(inputValue.isPressed);
+                animatorController.SetInteger("ShootMode", inputValue.isPressed ? 2 : 0);
             }
         }
     }

@@ -5,7 +5,7 @@ using UnityEngine;
 namespace Assets.Scripts.Player
 {
     [RequireComponent(typeof(Animator))]
-    public class PlayerProjectileScript : ProjectileScript
+    public class StandardProjectileScript : ProjectileScript
     {
         public Color[] colors;
 
@@ -19,7 +19,7 @@ namespace Assets.Scripts.Player
             GetComponent<SpriteRenderer>().color = colors[Random.Range(0, colors.Length)];
         }
 
-        protected override void Impact()
+        protected override void OnImpact(GameObject other)
         {
             if(_animator)
             {

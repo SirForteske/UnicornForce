@@ -3,17 +3,10 @@ using UnityEngine;
 
 namespace Gun
 {
-    public abstract class ProjectileScript : MonoBehaviour
+    public abstract class ProjectileScript : ShotScript
     {
-        [Tooltip("Damage which a projectile deals to another object. Integer")]
-        public int damage;
+        [Tooltip("The time that shall pass before this projectile is auto-destroyed. 0 = infinite.")]
         public float lifeTime = 2f;
-
-        [Tooltip("Whether the projectile belongs to the ‘Enemy’ or to the ‘Player’")]
-        public bool enemyBullet;
-
-        [Tooltip("Whether the projectile is destroyed in the collision, or not")]
-        public bool destroyedByCollision;
 
         public bool Impacted { get; private set; }
 
@@ -32,24 +25,18 @@ namespace Gun
             yield return new WaitForSeconds(lifeTime);
 
             if (!Impacted)
-                Impact();
+                OnImpact(null);
         }
 
-        private void OnTriggerEnter2D(Collider2D collision) //when a projectile collides with another object
+        private void OnTriggerEnter2D(Collider2D collision)
         {
-            if (enemyBullet && collision.tag == "Player") //if anoter object is 'player' or 'enemy sending the command of receiving the damage
-            {
-                ShooterPlayer.instance.Damage(damage);
-            }
-            else if (!enemyBullet && collision.tag == "Enemy")
+            if (collision.CompareTag("Enemy"))
             {
                 collision.GetComponent<Creature>().TakeDamage(damage);
             }
 
             Impacted = true;
-            Impact();
+            OnImpact(collision.gameObject);
         }
-
-        protected abstract void Impact();
     }
 }

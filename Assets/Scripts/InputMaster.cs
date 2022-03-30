@@ -37,10 +37,19 @@ public partial class @InputMaster : IInputActionCollection2, IDisposable
                     ""initialStateCheck"": false
                 },
                 {
-                    ""name"": ""Fire"",
-                    ""type"": ""PassThrough"",
+                    ""name"": ""PrimaryShot"",
+                    ""type"": ""Button"",
                     ""id"": ""3a99de7f-ac8a-4669-bfd6-af27fc79e46b"",
-                    ""expectedControlType"": ""Vector2"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""SecondaryShot"",
+                    ""type"": ""Button"",
+                    ""id"": ""d52bee7e-e478-49d5-8d29-02794a712778"",
+                    ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
@@ -50,11 +59,11 @@ public partial class @InputMaster : IInputActionCollection2, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""b5f7b3cd-77f6-4557-8581-5bd454129ae4"",
-                    ""path"": ""<Gamepad>/rightStick"",
+                    ""path"": ""<Gamepad>/rightTrigger"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""Xbox Control Scheme"",
-                    ""action"": ""Fire"",
+                    ""action"": ""PrimaryShot"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -66,6 +75,17 @@ public partial class @InputMaster : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""groups"": ""Xbox Control Scheme"",
                     ""action"": ""Movement"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""d0890299-6114-4df9-8cda-1747c5340015"",
+                    ""path"": ""<Gamepad>/rightTrigger"",
+                    ""interactions"": ""Press(behavior=2)"",
+                    ""processors"": """",
+                    ""groups"": ""Xbox Control Scheme"",
+                    ""action"": ""SecondaryShot"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -89,7 +109,8 @@ public partial class @InputMaster : IInputActionCollection2, IDisposable
         // Player
         m_Player = asset.FindActionMap("Player", throwIfNotFound: true);
         m_Player_Movement = m_Player.FindAction("Movement", throwIfNotFound: true);
-        m_Player_Fire = m_Player.FindAction("Fire", throwIfNotFound: true);
+        m_Player_PrimaryShot = m_Player.FindAction("PrimaryShot", throwIfNotFound: true);
+        m_Player_SecondaryShot = m_Player.FindAction("SecondaryShot", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -150,13 +171,15 @@ public partial class @InputMaster : IInputActionCollection2, IDisposable
     private readonly InputActionMap m_Player;
     private IPlayerActions m_PlayerActionsCallbackInterface;
     private readonly InputAction m_Player_Movement;
-    private readonly InputAction m_Player_Fire;
+    private readonly InputAction m_Player_PrimaryShot;
+    private readonly InputAction m_Player_SecondaryShot;
     public struct PlayerActions
     {
         private @InputMaster m_Wrapper;
         public PlayerActions(@InputMaster wrapper) { m_Wrapper = wrapper; }
         public InputAction @Movement => m_Wrapper.m_Player_Movement;
-        public InputAction @Fire => m_Wrapper.m_Player_Fire;
+        public InputAction @PrimaryShot => m_Wrapper.m_Player_PrimaryShot;
+        public InputAction @SecondaryShot => m_Wrapper.m_Player_SecondaryShot;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -169,9 +192,12 @@ public partial class @InputMaster : IInputActionCollection2, IDisposable
                 @Movement.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnMovement;
                 @Movement.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnMovement;
                 @Movement.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnMovement;
-                @Fire.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnFire;
-                @Fire.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnFire;
-                @Fire.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnFire;
+                @PrimaryShot.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnPrimaryShot;
+                @PrimaryShot.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnPrimaryShot;
+                @PrimaryShot.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnPrimaryShot;
+                @SecondaryShot.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnSecondaryShot;
+                @SecondaryShot.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnSecondaryShot;
+                @SecondaryShot.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnSecondaryShot;
             }
             m_Wrapper.m_PlayerActionsCallbackInterface = instance;
             if (instance != null)
@@ -179,9 +205,12 @@ public partial class @InputMaster : IInputActionCollection2, IDisposable
                 @Movement.started += instance.OnMovement;
                 @Movement.performed += instance.OnMovement;
                 @Movement.canceled += instance.OnMovement;
-                @Fire.started += instance.OnFire;
-                @Fire.performed += instance.OnFire;
-                @Fire.canceled += instance.OnFire;
+                @PrimaryShot.started += instance.OnPrimaryShot;
+                @PrimaryShot.performed += instance.OnPrimaryShot;
+                @PrimaryShot.canceled += instance.OnPrimaryShot;
+                @SecondaryShot.started += instance.OnSecondaryShot;
+                @SecondaryShot.performed += instance.OnSecondaryShot;
+                @SecondaryShot.canceled += instance.OnSecondaryShot;
             }
         }
     }
@@ -198,6 +227,7 @@ public partial class @InputMaster : IInputActionCollection2, IDisposable
     public interface IPlayerActions
     {
         void OnMovement(InputAction.CallbackContext context);
-        void OnFire(InputAction.CallbackContext context);
+        void OnPrimaryShot(InputAction.CallbackContext context);
+        void OnSecondaryShot(InputAction.CallbackContext context);
     }
 }

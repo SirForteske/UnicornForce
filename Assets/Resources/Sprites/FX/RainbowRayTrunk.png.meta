@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: fb16715489d630746836ab7b9c49e9fb
+guid: 786f17e798521e44eaf7c2ce54ab3ed1
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -104,13 +104,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: UnicornJet_0
+      name: RainbowTrunk_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 32
-        height: 32
+        width: 16
+        height: 16
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -118,20 +118,41 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: bbfb1463fc0f4d5479a22f7318e72566
-      internalID: -779553606
+      spriteID: 2ad85162602de38469d0c059cf6813b2
+      internalID: -1740715474
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: UnicornJet_1
+      name: RainbowTrunk_1
+      rect:
+        serializedVersion: 2
+        x: 16
+        y: 0
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: eedbad1fa06f21049bb8e4141a7f9675
+      internalID: -1959927312
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: RainbowTrunk_2
       rect:
         serializedVersion: 2
         x: 32
         y: 0
-        width: 32
-        height: 32
+        width: 16
+        height: 16
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -139,50 +160,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: cc6c4f593469b944abdfaf14ba42abf1
-      internalID: -1712154690
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: UnicornJet_2
-      rect:
-        serializedVersion: 2
-        x: 64
-        y: 0
-        width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 91a7405d7e66e584bb06f0a5ecb76baa
-      internalID: -33322941
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: UnicornJet_3
-      rect:
-        serializedVersion: 2
-        x: 96
-        y: 0
-        width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 9aa65f294fd11e24cac1b69fe3ef554c
-      internalID: 1647542259
+      spriteID: d071e5e28590c7e44a81b4df50519767
+      internalID: -534394048
       vertices: []
       indices: 
       edges: []
@@ -198,10 +177,9 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      UnicornJet_1: -1712154690
-      UnicornJet_2: -33322941
-      UnicornJet_0: -779553606
-      UnicornJet_3: 1647542259
+      RainbowTrunk_1: -1959927312
+      RainbowTrunk_0: -1740715474
+      RainbowTrunk_2: -534394048
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

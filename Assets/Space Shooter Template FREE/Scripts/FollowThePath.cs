@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using System;
+using Assets.Scripts.Enemies;
 
 /// <summary>
 /// This script moves the ‘Enemy’ along the defined path.
@@ -29,6 +30,33 @@ public class FollowThePath : MonoBehaviour {
         if (!rotationByPath)
             transform.rotation = Quaternion.identity;
         movingIsActive = true;
+    }
+
+    public void ExitPath()
+    {
+        var exitPoints = FindObjectsOfType<CreatureExitPointScript>();
+        float closestDistance = 1000000f;
+        CreatureExitPointScript closestExit = null;
+
+        foreach(CreatureExitPointScript exit in exitPoints)
+        {
+            var distance = Vector2.Distance(transform.position, exit.transform.position);
+
+            if (distance < closestDistance)
+            {
+                closestDistance = distance;
+                closestExit = exit;
+            }
+        }
+
+        path = new Transform[2] 
+        {
+            transform,
+            closestExit.transform
+        };
+
+        SetPath();
+        speed *= 5;
     }
 
     private void Update()

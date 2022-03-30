@@ -11,6 +11,8 @@ namespace Assets.Scripts.Player
 
         protected override void Start()
         {
+            base.Start();
+
             if (shootEffect)
                 shootEffect.SetActive(false);
         }
@@ -19,9 +21,9 @@ namespace Assets.Scripts.Player
         {
         }
 
-        protected override void Fire()
+        protected override void OnFire()
         {
-            var shot = Instantiate(defaultProjectilePrefab, transform.position, transform.rotation);
+            var shot = Instantiate(equippedProjectile, transform.position, transform.rotation);
             shot.GetComponent<Rigidbody2D>().AddForce(transform.right * power, ForceMode2D.Impulse);
             PlayShootEffect();
         }

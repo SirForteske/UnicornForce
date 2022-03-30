@@ -7,30 +7,23 @@ namespace Assets.Scripts.Player
     public class GunSlotScript : MonoBehaviour
     {
         public GunScript defaultGun;
-        public bool active = true;
-        public bool autoFire = false;
 
-        public GunScript CurrentGun { get; private set; }
+        public GunScript EquippedGun { get; private set; }
 
 
         protected virtual void Start()
         {
             if(defaultGun != null)
             {
-                SetGun(defaultGun);
-            }
+                EquipGun(defaultGun);
+            } 
         }
 
-        protected virtual void Update()
+        public void EquipGun(GunScript gunPrefab)
         {
-            if (autoFire) CurrentGun.Trigger(false);
-        }
-
-        public void SetGun(GunScript gunPrefab)
-        {
-            Destroy(CurrentGun);
-            CurrentGun = Instantiate(gunPrefab, transform.position, transform.rotation, transform);
-            CurrentGun.transform.localScale = transform.localScale;
+            Destroy(EquippedGun);
+            EquippedGun = Instantiate(gunPrefab, transform.position, transform.rotation, transform);
+            EquippedGun.transform.localScale = transform.localScale;
         }
     }
 }

@@ -12,8 +12,8 @@ GameObject:
   - component: {fileID: 4544702338788103283}
   - component: {fileID: 4544702338788103282}
   - component: {fileID: 4544702338788103286}
-  - component: {fileID: 4544702338788103287}
   - component: {fileID: 8759491098706878860}
+  - component: {fileID: 4750256707273480805}
   m_Layer: 0
   m_Name: Creature01
   m_TagString: Enemy
@@ -134,22 +134,6 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.12, y: 0.13}
   m_EdgeRadius: 0
---- !u!114 &4544702338788103287
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4544702338788103281}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f09b90f1f74ffc84eb6f17ea7ff6f231, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  spriteRenderer: {fileID: 4544702338788103283}
-  health: 2
-  isCorrupt: 1
-  healedMaterial: {fileID: 0}
 --- !u!114 &8759491098706878860
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -167,3 +151,21 @@ MonoBehaviour:
   rotationByPath: 0
   loop: 0
   movingIsActive: 0
+--- !u!114 &4750256707273480805
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4544702338788103281}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2824569043c1914448760061cccf6657, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spriteRenderer: {fileID: 4544702338788103283}
+  health: 2
+  isCorrupt: 1
+  healedMaterial: {fileID: 0}
+  exitPointPrefab: {fileID: 0}
+  scapeSpeed: 20

@@ -1,8 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using UnityEngine;
 
 namespace Assets.Scripts
@@ -16,7 +13,7 @@ namespace Assets.Scripts
         public Wave wavePrefab;
     }
 
-    public class LevelController : MonoBehaviour
+    public class LevelControllerScript : MonoBehaviour
     {
         public int numberOfRows = 4;
         [Header("Creature Waves")]

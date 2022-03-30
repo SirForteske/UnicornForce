@@ -11,7 +11,10 @@ public class Creature : MonoBehaviour
     [Header("Corruption")]
     [SerializeField]
     protected bool isCorrupt = true;
-    public Material healedMaterial;
+
+    protected bool _isOutsideScreen = true;
+
+    public bool IsCorrupt { get => isCorrupt; set => isCorrupt = value; }
 
     protected void Start()
     {
@@ -27,22 +30,20 @@ public class Creature : MonoBehaviour
         isCorrupt = !isCorrupt;
 
         GetComponent<Animator>().SetBool("Cleansed", !isCorrupt);
+        GetComponent<Animator>().Play(isCorrupt ? "Sad" : "Happy");
         spriteRenderer.material.SetFloat("_GreyscaleBlend", isCorrupt ? 1f : 0f);
     }
 
     public virtual void TakeDamage(float damage)
     {
+        if (_isOutsideScreen) return;
+
         health = Mathf.Max(0, health - damage);
 
         if(isCorrupt && health == 0)
         {
             ToogleCorrupted();
         }
-    }
-
-    protected virtual void OnBecameInvisible()
-    {
-        Destroy(gameObject);
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -53,11 +54,13 @@ public class Creature : MonoBehaviour
         }
     }
 
-    private void OnParticleCollision(GameObject other)
+    protected virtual void OnBecameVisible()
     {
-  /*      if (other.CompareTag("Enemy"))
-        {
-            var something = 0;
-        }*/
+        _isOutsideScreen = false;
+    }
+
+    protected virtual void OnBecameInvisible()
+    {
+        _isOutsideScreen = true;
     }
 }

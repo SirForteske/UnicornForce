@@ -11,26 +11,37 @@
                     "id": "3c8ca62a-c3fc-4e10-88bf-c4946c814ed3",
                     "expectedControlType": "Vector2",
                     "processors": "",
-                    "interactions": ""
+                    "interactions": "",
+                    "initialStateCheck": false
                 },
                 {
-                    "name": "Fire",
-                    "type": "PassThrough",
+                    "name": "PrimaryShot",
+                    "type": "Button",
                     "id": "3a99de7f-ac8a-4669-bfd6-af27fc79e46b",
-                    "expectedControlType": "Vector2",
+                    "expectedControlType": "Button",
                     "processors": "",
-                    "interactions": ""
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "SecondaryShot",
+                    "type": "Button",
+                    "id": "d52bee7e-e478-49d5-8d29-02794a712778",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
                 {
                     "name": "",
                     "id": "b5f7b3cd-77f6-4557-8581-5bd454129ae4",
-                    "path": "<Gamepad>/rightStick",
+                    "path": "<Gamepad>/rightTrigger",
                     "interactions": "",
                     "processors": "",
                     "groups": "Xbox Control Scheme",
-                    "action": "Fire",
+                    "action": "PrimaryShot",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -42,6 +53,17 @@
                     "processors": "",
                     "groups": "Xbox Control Scheme",
                     "action": "Movement",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "d0890299-6114-4df9-8cda-1747c5340015",
+                    "path": "<Gamepad>/rightTrigger",
+                    "interactions": "Press(behavior=2)",
+                    "processors": "",
+                    "groups": "Xbox Control Scheme",
+                    "action": "SecondaryShot",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
