@@ -9,6 +9,8 @@ namespace Gun
     {
         [Tooltip("Damage which a projectile deals to another object. Integer")]
         public int damage;
+        [Tooltip("The time that shall pass before this projectile is auto-destroyed. 0 = infinite.")]
+        public float lifeTime = 2f;
 
         public int Damage { get => damage; set => damage = value; }
 

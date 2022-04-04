@@ -12,6 +12,7 @@ namespace Gun
         [Header("Gun Settings")]
         public bool active = true;
         public bool autofire = false;
+        public int defaultFireMode = 1;
         public float power;
         [Tooltip("The maximum amount of ammo this weapon can hold. 0 = infinite.")]
         public int maxAmmo = 0;
@@ -23,11 +24,13 @@ namespace Gun
         public int CurrentAmmo { get; set; }
         public bool HasAmmo { get => CurrentAmmo > 0 || maxAmmo == 0; }
         public bool CanShoot => _canShoot;
+        public int FireMode { get; set; }
 
 
         protected virtual void Start()
         {
             CurrentAmmo = maxAmmo;
+            FireMode = defaultFireMode;
 
             if (equippedProjectile == null) 
                 equippedProjectile = defaultProjectilePrefab;
@@ -48,7 +51,7 @@ namespace Gun
 
             if (active && _canShoot && HasAmmo)
             { 
-                OnFire();
+                Fire();
                 CurrentAmmo = Mathf.Max(0, CurrentAmmo - 1);
                 if (fireRate > 0)
                 {
@@ -58,7 +61,11 @@ namespace Gun
             }
         }
 
-        protected abstract void OnFire();
+        protected abstract void Fire();
+
+        public abstract void UpgradeFireMode();
+
+        public abstract void DowngradeFireMode();
 
         public abstract void Stop();
 

@@ -22,7 +22,7 @@ namespace Assets.Scripts.Player
                 StartCoroutine(RechargeAmmo());
         }
 
-        protected override void OnFire()
+        protected override void Fire()
         {
             if(!Firing && CurrentAmmo == maxAmmo)
             {
@@ -55,6 +55,16 @@ namespace Assets.Scripts.Player
                 else
                     Stop();
             }
+        }
+
+        public override void UpgradeFireMode()
+        {
+            FireMode = 0;
+        }
+
+        public override void DowngradeFireMode()
+        {
+            FireMode = 0;
         }
     }
 }

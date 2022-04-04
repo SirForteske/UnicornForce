@@ -75,24 +75,8 @@ namespace Player
             }
         }
 
-        public void AddPower(float power)
+        public void PowerUp(float power)
         {
-        /*    Power = Mathf.Min(maxPower, Mathf.Max(0f, Power + power));
-            OnPowerChanged?.Invoke(Power, maxPower);
-
-            if (Power == maxPower && !superPowerActive)
-            {
-                superPowerActive = true;
-                slots[1].active = true;
-                slots[1].CurrentGun.Trigger();
-                StartCoroutine(ConsumePower(powerConsumption));
-            } 
-            else if (Power == 0f)
-            {
-                superPowerActive = false;
-                slots[1].active = false;
-                slots[1].CurrentGun.Stop();
-            }*/
         }
 
         //'Player's' destruction procedure
@@ -113,7 +97,7 @@ namespace Player
         {
             yield return new WaitForSeconds(1);
 
-            AddPower(-amount);
+        //    AddPower(-amount);
 
             if (superPowerActive)
             {

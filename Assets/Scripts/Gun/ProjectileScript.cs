@@ -5,8 +5,6 @@ namespace Gun
 {
     public abstract class ProjectileScript : ShotScript
     {
-        [Tooltip("The time that shall pass before this projectile is auto-destroyed. 0 = infinite.")]
-        public float lifeTime = 2f;
 
         public bool Impacted { get; private set; }
 
