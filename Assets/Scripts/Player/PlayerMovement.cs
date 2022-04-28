@@ -6,6 +6,9 @@ using static InputMaster;
 
 public class PlayerMovement : MonoBehaviour
 {
+    [Header("Animation")]
+    public Animator bodyAnimatorController;
+
     public float speed = 1.0f;
     public Rect screenBoundaries;
 
@@ -21,6 +24,9 @@ public class PlayerMovement : MonoBehaviour
     {
         movement = inputMaster.Player.Movement;
         movement.Enable();
+
+        if (bodyAnimatorController == null)
+            bodyAnimatorController = GetComponent<Animator>();
     }
 
     // Update is called once per frame
@@ -32,27 +38,8 @@ public class PlayerMovement : MonoBehaviour
             Mathf.Max(screenBoundaries.yMin, Mathf.Min(screenBoundaries.yMax, transform.position.y + v.normalized.y * speed * Time.deltaTime)));
 
         transform.position = newPosition;
-        /*
-        var newX = transform.position.x;
-        var newY = transform.position.y;
 
-        if(Input.GetKey(KeyCode.S))
-        {
-            newY = Mathf.Max(screenBoundaries.yMin, transform.position.y - speed * Time.deltaTime);
-        }
-        if (Input.GetKey(KeyCode.W))
-        {
-            newY = Mathf.Min(screenBoundaries.yMax, transform.position.y + speed * Time.deltaTime);
-        }
-        if (Input.GetKey(KeyCode.A))
-        {
-            newX = Mathf.Max(screenBoundaries.xMin, transform.position.x - speed * Time.deltaTime);
-        }
-        if (Input.GetKey(KeyCode.D))
-        {
-            newX = Mathf.Min(screenBoundaries.xMax, transform.position.x + speed * Time.deltaTime);
-        }
-       
-        transform.position = new Vector3(newX, newY, transform.position.z); */
+        if (bodyAnimatorController)
+            bodyAnimatorController.SetInteger("yMovement", v.y == 0 ? 0 : (int)Mathf.Sign(v.y));
     }
 }

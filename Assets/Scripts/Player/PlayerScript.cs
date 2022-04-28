@@ -13,13 +13,12 @@ using UnityEngine.UI;
 
 namespace Player
 {
-    [RequireComponent(typeof(Animator))]
     public class PlayerScript : MonoBehaviour
     {
         public static PlayerScript instance;
 
         [Header("Animation")]
-        public Animator animatorController;
+        public Animator headAnimatorController;
 
         [Header("Health")]
         public GameObject destructionFX;
@@ -53,7 +52,8 @@ namespace Player
 
         private void Start()
         {
-            animatorController = GetComponent<Animator>();
+            if(headAnimatorController == null)
+                headAnimatorController = GetComponent<Animator>();
         }
 
         private void Update()
@@ -113,7 +113,7 @@ namespace Player
                 secondarySlot.EquippedGun.active = !inputValue.isPressed;
 
                 primarySlot.EquippedGun.Trigger(inputValue.isPressed);
-                animatorController.SetInteger("ShootMode", inputValue.isPressed ? 1 : 0);
+                headAnimatorController.SetInteger("ShootMode", inputValue.isPressed ? 1 : 0);
             }
         }
 
@@ -125,7 +125,7 @@ namespace Player
                 secondarySlot.EquippedGun.active = inputValue.isPressed;
 
                 secondarySlot.EquippedGun.Trigger(inputValue.isPressed);
-                animatorController.SetInteger("ShootMode", inputValue.isPressed ? 2 : 0);
+                headAnimatorController.SetInteger("ShootMode", inputValue.isPressed ? 2 : 0);
             }
         }
     }

@@ -670,9 +670,9 @@ Camera:
   m_NormalizedViewPortRect:
     serializedVersion: 2
     x: 0
-    y: 0.09417041
+    y: 0.0033076075
     width: 1
-    height: 0.8071749
+    height: 0.9922823
   near clip plane: 0.3
   far clip plane: 1000
   field of view: 60
@@ -2729,6 +2729,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 115bea53fbb6c834db7a56d208889614, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  pickupFX: {fileID: 0}
+  fxDuration: 0.25
 --- !u!58 &1503970345
 CircleCollider2D:
   m_ObjectHideFlags: 0
